@@ -1,60 +1,188 @@
 ﻿# Global Crisis Simulator
 
-A network-based simulator for analyzing how supply chain disruptions propagate through international trade flows. The project models countries as nodes, trade relationships as directed capacity-constrained edges, and measures system-wide shortages under shocks, export controls, and recovery dynamics.
+A lightweight network-based simulation framework for experimenting with how localized infrastructure shocks propagate through interconnected trade-style systems.
 
-## Trade Network Visualization
+This project explores **structural fragility, cascading disruption behavior, and recovery dynamics**, rather than forecasting real-world geopolitical outcomes.
 
-![Trade Network](outputs/sample_trade_network.png)
+---
 
-## Fragile Trade Links
+## Motivation
 
-![Fragility Chart](outputs/sample_fragility_top10.png)
+I built this simulator to better understand how localized failures in highly connected systems can propagate across global supply-style networks.
 
-## Shortage Distribution
+Most modeling projects focus on prediction. This one focuses on **structure**:
 
-![Monte Carlo Histogram](outputs/sample_max_shortage_hist.png)
+* chokepoints
+* dependency chains
+* recovery timing
+* cascading failure behavior
 
-## What this does
+The goal is to create an experimentation environment rather than a forecasting engine.
 
-- Builds a directed trade network from bilateral trade flows
-- Simulates inventory, production, and constrained trade fulfillment
-- Applies shocks to trade capacity and models recovery
-- Introduces export controls when domestic shortages rise
-- Runs Monte Carlo simulations to estimate systemic risk
-- Identifies fragile trade links whose disruption causes the largest shortages
+---
 
-## Project structure
+## What This Simulator Does
 
-src/
-- world.py — builds the trade network
-- simulate.py — daily inventory and trade simulation
-- shocks.py — disruption modeling
-- monte_carlo.py — simulation trials
-- fragility.py — edge fragility analysis
+The simulator models a directed trade-style network where nodes represent countries or hubs and edges represent dependency relationships.
 
-scripts/
-- generate_sample_data.py — generates a reproducible dataset
-- run_real_data.py — runs simulations
-- run_network_viz.py — builds the network visualization
-- run_fragility.py — computes fragility rankings
-- run_fragility_viz.py — plots the top fragile edges
-- run_all.py — runs the full pipeline
+It allows:
 
-## Quick start
+* chokepoint disruptions
+* clustered infrastructure shocks
+* correlated multi-node failures
+* recovery curve experiments
+* fragility ranking across nodes
+* scenario comparison across time
 
-Install dependencies:
+---
 
-python -m pip install -r requirements.txt
+## Example Scenario Types
 
-Run the simulator:
+Included scenario library:
 
-python -m scripts.run_all
+* Singapore chokepoint disruption
+* clustered regional infrastructure shock
+* multi-edge correlated trade slowdown
+* temporary production collapse event
+* recovery-lag cascade scenario
 
-Outputs will be written to the `outputs/` directory.
+Each scenario tests how disruptions propagate through network structure rather than isolated nodes.
 
-## Notes
+---
 
-This project models how supply chain disruptions propagate through trade networks using a simplified but extensible framework. It captures several real-world mechanisms including inventory buffering, demand volatility, capacity constraints, and export restrictions.
+## Architecture
 
-The framework can be extended to incorporate sector-specific networks, price dynamics, and real-world economic indicators.
+Pipeline structure:
 
+```
+Network Builder
+    ↓
+Shock Injection Engine
+    ↓
+Propagation Model
+    ↓
+Recovery Curve Logic
+    ↓
+Fragility Ranking
+    ↓
+Visualization Layer
+```
+
+See:
+
+```
+assets/architecture.png
+```
+
+---
+
+## Design Decisions
+
+This simulator intentionally prioritizes interpretability over predictive realism.
+
+Key choices:
+
+* Used NetworkX to iterate quickly on graph experiments
+* Started with deterministic recovery curves before adding stochastic noise
+* Modeled chokepoint severity as edge-capacity degradation rather than node removal
+* Focused on structural fragility instead of macroeconomic forecasting
+
+Future versions could incorporate real trade-weight matrices from UN Comtrade.
+
+---
+
+## Example Output Metrics
+
+Simulation outputs include:
+
+* unmet demand percentage over time
+* recovery time after peak disruption
+* area-under-shortage curve (AUC)
+* node fragility ranking
+* cascade severity index
+
+These allow comparison between scenarios rather than single-point predictions.
+
+---
+
+## Limitations
+
+This simulator uses a stylized dependency network rather than real global trade data.
+
+Shock propagation is deterministic instead of probabilistic.
+
+Recovery curves are linear approximations.
+
+Fragility scoring is heuristic and intended for experimentation only.
+
+The simulator is designed for **scenario exploration**, not forecasting.
+
+---
+
+## Running the Simulator
+
+Example baseline simulation:
+
+```
+python scripts/run_all.py
+```
+
+Scenario comparison:
+
+```
+python scripts/run_scenario_suite.py
+```
+
+Fragility ranking:
+
+```
+python scripts/run_risk_report.py
+```
+
+---
+
+## Example Experiments Included
+
+The project supports:
+
+* chokepoint stress testing
+* dependency cascade visualization
+* scenario severity comparison
+* node importance ranking
+* recovery timing experiments
+
+---
+
+## Repository Structure
+
+```
+Global-Crisis-Simulator/
+│
+├── src/
+├── scripts/
+├── notebooks/
+├── assets/
+│
+├── runner.py
+├── fragility.py
+├── monte_carlo.py
+```
+
+---
+
+## Future Improvements
+
+Possible extensions:
+
+* stochastic recovery curves
+* Monte Carlo parameter sweeps
+* real trade-weight calibration
+* probabilistic cascade branching
+* scenario ensembles
+
+---
+
+## Author
+
+Zachary Amachee
+CIS @ Baruch College
